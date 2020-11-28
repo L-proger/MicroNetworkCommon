@@ -19,6 +19,7 @@ struct PacketId {
     static constexpr std::uint8_t Unbind = 0xfe;
     static constexpr std::uint8_t TaskStart = 0xfd;
     static constexpr std::uint8_t TaskStop = 0xfc;
+    static constexpr std::uint8_t TaskDescription = 0xfb;
 };
 
 struct PacketHeader {
