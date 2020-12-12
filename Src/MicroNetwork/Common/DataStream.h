@@ -67,9 +67,15 @@ struct DataStream {
     	_remote->onRemoteReset();
     }
 protected:
+    virtual void onRemoteDisconnect() = 0;
     virtual void onRemoteReset() = 0;
     virtual void onRemoteDataAvailable() = 0;
     virtual void onReadBytes() = 0;
+
+    void notifyDisconnect() {
+        _remote->onRemoteDisconnect();
+    }
+
     DataStream* _remote = nullptr;
     void clear() {
     	_buffer.clear();
