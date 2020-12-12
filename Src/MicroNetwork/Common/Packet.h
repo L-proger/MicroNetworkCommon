@@ -3,6 +3,7 @@
 #include <cstdint>
 #include <LFramework/BitField.h>
 #include <array>
+#include <cstring>
 
 namespace MicroNetwork::Common {
 
@@ -32,8 +33,29 @@ struct PacketHeader {
 };
 
 struct MaxPacket {
-       PacketHeader header;
-       std::array<std::uint8_t, 256> payload;
-   };
+    PacketHeader header;
+    std::array<std::uint8_t, 0xff> payload;
+
+    template<typename T>
+    bool setData(const T& data) {
+        if constexpr (sizeof(T) > 0xff) {
+            return false;
+        } else {
+            header.size = sizeof(data);
+            memcpy(payload.data(), &data, sizeof(data));
+            return true;
+        }
+    }
+
+    template<typename T>
+    bool getData(T& data) {
+        if (sizeof(T) > header.size) {
+            return false;
+        } else {
+            memcpy(&data, payload.data(), sizeof(data));
+            return true;
+        }
+    }
+};
 
 }
