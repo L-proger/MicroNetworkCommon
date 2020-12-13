@@ -20,6 +20,6 @@ struct InterfaceAbi<MicroNetwork::Common::IDataReceiver> : public InterfaceAbi<I
 template<class TImplementer>
 struct InterfaceRemap<MicroNetwork::Common::IDataReceiver, TImplementer> : public InterfaceRemap<IUnknown, TImplementer> {
 public:
-    virtual Result packet(MicroNetwork::Common::PacketHeader header, const void* data) { return this->_implementer->packet(header, data); }
+    virtual Result packet(MicroNetwork::Common::PacketHeader header, const void* data) { return this->implementer()->packet(header, data); }
 };
 }
