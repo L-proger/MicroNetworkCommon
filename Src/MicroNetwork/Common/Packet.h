@@ -7,14 +7,6 @@
 
 namespace MicroNetwork::Common {
 
-union PacketDescription {
-    std::uint8_t data;
-    LFramework::BitFieldMember<std::uint8_t, 0, 1> isService;
-    LFramework::BitFieldMember<std::uint8_t, 1, 7> reserved;
-};
-
-static_assert(sizeof(PacketDescription) == 1, "Invalid PacketDescription size");
-
 struct PacketId {
     static constexpr std::uint8_t Bind = 0xff;
     static constexpr std::uint8_t Unbind = 0xfe;
