@@ -1,0 +1,9 @@
+struct PacketHeader {
+    uint8 id;
+    uint8 size;
+}
+
+[Guid("7d055626-dae1-4cc7-81d0-ed813d57bd73")]
+interface IDataReceiver : IUnknown {
+	void packet(PacketHeader header, [Const] void& data);
+}

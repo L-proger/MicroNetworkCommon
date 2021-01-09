@@ -2,6 +2,7 @@
 
 #include <cstdint>
 #include <LFramework/BitField.h>
+#include <MicroNetwork.Common.h>
 #include <array>
 #include <cstring>
 
@@ -15,6 +16,11 @@ struct PacketId {
     static constexpr std::uint8_t TaskDescription = 0xfb;
 };
 
+inline std::size_t packetFullSize(PacketHeader& header) {
+    return sizeof(PacketHeader) + header.size;
+}
+
+/*
 struct PacketHeader {
     std::uint8_t id;
     std::uint8_t size;
@@ -23,7 +29,7 @@ struct PacketHeader {
     	return sizeof(PacketHeader) + size;
     }
 };
-
+*/
 struct MaxPacket {
     PacketHeader header;
     std::array<std::uint8_t, 0xff> payload;
