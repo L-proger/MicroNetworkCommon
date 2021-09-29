@@ -16,7 +16,7 @@ struct PacketId {
     static constexpr std::uint8_t TaskDescription = 0xfb;
 };
 
-inline std::size_t packetFullSize(PacketHeader& header) {
+inline std::size_t packetFullSize(const PacketHeader& header) {
     return sizeof(PacketHeader) + header.size;
 }
 
