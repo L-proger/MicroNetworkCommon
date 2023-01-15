@@ -44,3 +44,10 @@ interface IDeviceToHost : IUnknown {
 	void readResponse(MemoryBlob response);
 	void writeResponse(bool success);
 }
+
+
+[Guid("9AC2FEE8-ECD0-461D-9906-9BC28D01B9A2")]
+interface IStream : IUnknown {
+	IHostToDevice outStream();
+	IDeviceToHost inStream();
+}
